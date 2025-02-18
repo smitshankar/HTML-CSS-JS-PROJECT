@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="maindiv1" class="maindiv2"></div>
+
+    </div>
+    <div id="mainpage" class="mainpage">
+
+        <div class="pagecontainer">
+            <div class="totalprice1">
+                <span class="spanimg"><img src="img/69.png" class="img"></span>
+                <div class="flex1">
+                    <div class="total1 fsize">Total Amount : </div>
+                    <div class="fsize">$<span class="total fsize" id="total">0.00</span></div>
+                </div>
+            </div>
+            <div class="pagecard" id="pagecard"></div>
+        </div>
+    </div>
+
+    <script>
+         document.getElementById("maindiv1").innerHTML += ` <div class="section1">
+                                                                        <div class="sectiondiv">
+                                                                            <div class="container flex">
+                                                                                <div class="s1 width1">
+                                                                                    <h1 class="head">E-Commerce Cart</h1>
+                                                                                </div>
+                                                                                <div class="s2 width1">
+                                                                                    <div class="iconclass">
+                                                                                        <a href="task_1.html"  class="colorwhite"><div class="float" >
+                                                                                        <i class="fa-solid fa-cart-plus"></i>
+                                                                                        <p class="inumber right" id="inumber">0</p>
+                                                                                        </div></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="main">
+                                                                        <div class="container" id="container">
+                                                                            <div id="maindiv" class="maindiv"></div>
+                                                                        </div>
+                                                                    </div>`
+        let text = 0;
+        //let total = 0
+        let prodcutQuantity = JSON.parse(localStorage.getItem("prodcutQuantity"))
+       // let t = JSON.parse(localStorage.getItem("product"))
+        let x = JSON.parse(localStorage.getItem('newarray'));
+        let quantityarray = [];
+        for (let l of x) {
+            let y = JSON.parse(localStorage.getItem(`id${l}`));
+            document.getElementById("pagecard").innerHTML += `<div id="carddiv${l}" class="carddiv">
+                                                             <div class="width imagecenter">       
+                                                                <img id="pimage${l}" class="pimage">
+                                                            </div>
+                                                            <div class="carddetails width" >
+                                                                <div class="titledelete">
+                                                                    <p class="producttitle fsize" id="producttitle${l}" onmouseover="showTitle(${l})" onmouseout="removeTitle(${l})"></p>
+                                                                    <i class="fa-solid fa-trash-can  icon" onclick="cartDelete(${l})"></i>
+                                                                </div>
+                                                                <div class="buttondiv divpad">
+                                                                    <button id="decrement${l}" class="increment increment1" onclick="decrementValue(${l})">-</button>
+                                                                    <p id="cardvalue${l}" class="cardvalue pvalue fsize"></p> 
+                                                                    <button id="increment${l}" class="increment increment1" onclick="incrementValue(${l})">+</button>
+                                                                </div>
+                                                                <p id="cardprice${l}" class="cardprice fsize"></p>
+                                                                 <p class="total fsize">Total price : $<span id="totalprice${l}" class="totalprice fsize"></span></p>
+                                                            </div>`
+            document.getElementById(`pimage${l}`).src = y.image;
+            document.getElementById(`cardvalue${l}`).innerHTML = JSON.parse(localStorage.getItem(`quantity${l}`));
+            document.getElementById(`cardprice${l}`).innerHTML = "price :  $" + (y.price).toFixed(2)
+            document.getElementById(`totalprice${l}`).innerHTML = (JSON.parse(localStorage.getItem(`quantity${l}`)) * y.price).toFixed(2)
+            document.getElementById(`producttitle${l}`).innerHTML = y.title.slice(0, 20) + "..."
+            function showTitle(l) {
+                let x = JSON.parse(localStorage.getItem(`id${l}`));
+                document.getElementById(`producttitle${l}`).innerHTML = x.title;
+            }
+            function removeTitle(l) {
+                let x = JSON.parse(localStorage.getItem(`id${l}`));
+                document.getElementById(`producttitle${l}`).innerHTML = x.title.slice(0, 20) + "...";
+            }
+            function incrementValue(l) {
+                let p = document.getElementById(`cardvalue${l}`).innerHTML;
+                if (p >= prodcutQuantity[l]) {
+                    alert(`${y.title} is sold out `);
+                    event.preventDefault();
+                } else {
+                    let x = JSON.parse(localStorage.getItem(`id${l}`));
+                    p++;
+                    document.getElementById(`cardvalue${l}`).innerHTML = p;
+                    document.getElementById(`totalprice${l}`).innerHTML = (p * x.price).toFixed(2);
+                    let k = Number(document.getElementById("total").innerHTML);
+                    document.getElementById("total").innerHTML = (k + x.price).toFixed(2);
+                    if (JSON.parse(localStorage.getItem("inumber"))) {
+                        q = JSON.parse(localStorage.getItem("inumber"));
+                        q++;
+                        localStorage.setItem("inumber", JSON.stringify(q));
+                    }
+                    if(localStorage.getItem(`quantity${l}`)) {
+                        localStorage.setItem(`quantity${l}`,JSON.stringify(Number(document.getElementById(`cardvalue${l}`).innerHTML)))
+                    }
+                    document.getElementById("inumber").innerHTML = JSON.parse(localStorage.getItem("inumber"));
+                    localStorage.setItem(`productquantity${l}`,JSON.stringify( document.getElementById(`cardvalue${l}`).innerHTML ))
+                }
+            }
+            function decrementValue(l) {
+                let p = document.getElementById(`cardvalue${l}`).innerHTML;
+                let y = JSON.parse(localStorage.getItem(`id${l}`));
+                let n = (p * y.price).toFixed(2)
+                if (p <= 1) {
+                    document.getElementById(`carddiv${l}`).style.display = "none";
+                    document.getElementById(`totalprice${l}`).innerHTML = "0.00"
+                    let b = JSON.parse(localStorage.getItem('newarray')).indexOf(l)
+                    let storedArray = JSON.parse(localStorage.getItem('newarray'));
+                    storedArray.splice(b, 1);
+                    localStorage.setItem('newarray', JSON.stringify(storedArray));
+                }
+                p--;
+                document.getElementById(`cardvalue${l}`).innerHTML = p;
+                document.getElementById(`totalprice${l}`).innerHTML = (n - y.price).toFixed(2);
+                let k = Number(document.getElementById("total").innerHTML);
+                document.getElementById("total").innerHTML = (k - y.price).toFixed(2);
+                if (JSON.parse(localStorage.getItem("inumber"))) {
+                    q = JSON.parse(localStorage.getItem("inumber"));
+                    q--;
+                    localStorage.setItem("inumber", JSON.stringify(q));
+                }
+                if(localStorage.getItem(`quantity${l}`)) {
+                        localStorage.setItem(`quantity${l}`,JSON.stringify(Number(document.getElementById(`cardvalue${l}`).innerHTML)))
+                    }
+                document.getElementById("inumber").innerHTML = JSON.parse(localStorage.getItem("inumber"));
+                localStorage.setItem(`productquantity${l}`,JSON.stringify( document.getElementById(`cardvalue${l}`).innerHTML ))
+            }
+            function cartDelete(l) {
+                document.getElementById(`carddiv${l}`).style.display = "none";
+                let k = Number(document.getElementById("total").innerHTML);
+                let z = Number(document.getElementById(`totalprice${l}`).innerHTML);
+                document.getElementById("total").innerHTML = (k - z).toFixed(2);
+                let b = JSON.parse(localStorage.getItem('newarray')).indexOf(l)
+                let storedArray = JSON.parse(localStorage.getItem('newarray'));
+                storedArray.splice(b, 1);
+                localStorage.setItem('newarray', JSON.stringify(storedArray));
+                    let f = (Number(document.getElementById("inumber").innerHTML)) - JSON.parse(localStorage.getItem(`quantity${l}`));
+                    document.getElementById("inumber").innerHTML = f
+                    if(localStorage.getItem("inumber")) {
+                        localStorage.setItem("inumber", JSON.stringify(Number(document.getElementById("inumber").innerHTML)))
+                    }
+                    if(localStorage.getItem(`quantity${l}`)) {
+                        localStorage.setItem(`quantity${l}`,JSON.stringify(0))
+                    }
+            }
+            text += Number(document.getElementById(`totalprice${l}`).innerHTML);
+            localStorage.setItem(`productquantity${l}`,JSON.stringify( document.getElementById(`cardvalue${l}`).innerHTML ))
+           
+        }
+        document.getElementById("total").innerHTML = text.toFixed(2);
+        document.getElementById("inumber").innerHTML = Number(JSON.parse(localStorage.getItem("inumber")))
+    </script>
+</body>
+
+</html>

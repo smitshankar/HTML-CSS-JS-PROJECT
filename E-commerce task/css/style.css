@@ -1,0 +1,204 @@
+body,p,h3,h1 {
+    margin: 0;
+}
+body {
+    font-family:  sans-serif;
+    box-sizing: border-box;
+}
+.image {
+    width: 200px;
+    height: 200px;
+}
+.maincard {
+    width: 300px;
+    height: 350px;
+    border-radius: 9px;
+    border:none;
+    box-shadow:rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.imagediv,.addcard {
+    text-align: center;
+}
+.buttondiv {
+    display: flex;
+    justify-content: center;
+    gap: 12px 
+}
+.maincard,.imagediv,.addcard {
+    padding: 12px 
+}
+.maindiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 35px;
+}
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+}
+.increment,.decrement{
+    padding: 0px 19px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E0F4FF;
+   
+}
+.cardvalue,.increment,.decrement {
+    font-size: 20px;
+}
+.addbutton  {
+    padding: 8px 19px;
+    border-radius: 5px;
+    border: none;
+    background: #E0F4FF;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    
+}
+button:hover,.addbutton:hover {
+    background-color: #B5C0D0;
+}
+.pagecontainer {
+    max-width: 800px;
+    margin: 0 auto;
+    
+}
+.carddiv {
+    display: flex;
+    align-items: center;
+    box-shadow:rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+    width: 100%;
+    padding: 14px 
+}
+.pagecard {
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.width {
+   width: 50%;
+    padding: 4px;
+
+}
+.pimage {
+    width: 48%;
+    height: 217px;
+}
+.carddetails {
+    font-size: 30px;
+}
+.cardprice,.cardquantity {
+    padding: 10px;
+}
+.imagecenter {
+    text-align: center;
+}
+.section1 {
+    position: sticky;
+    top: 0;
+    background: #1450A3;
+}
+.sectiondiv {
+    box-shadow:rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-bottom: 13px;
+    padding: 16px;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+.width1 {
+    width: 50%;
+}
+.iconclass {
+    text-align: right;
+    font-size: 30px;
+    color: white;
+}
+.inumber {
+    /* width: 2%; */
+    font-size: 15px;
+    position: absolute;
+    right: 38px;
+    top: 2px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 4px 6px 4px 6px;
+    color: white;
+}
+.head{
+    color: white;
+}
+.pprice {
+    text-align: center;
+    padding: 8px;
+}
+.divpad {
+    padding: 15px 
+}
+.increment1 {
+    padding: 9px 19px;
+    font-size: 20px;
+    width: 39%;
+}
+.pvalue {
+    padding: 10px
+}
+/* .mainpage {
+   padding: 40px 0px 40px 0px;
+} */
+.fsize {
+    font-size: 22px;
+}
+.icon {
+    font-size: 25px;
+    color: #1450A3;
+}
+.titledelete,.totalprice1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.producttitle  {
+    width: 90%;
+}
+.totalprice1 {
+   
+    padding: 0px 23px 0px 23px; 
+    background: #1450A3;
+    border-radius: 15px;
+    color: white;
+    margin-bottom: 16px;
+}
+.img {
+    width: 100%;
+}
+.flex1 {
+    display: flex;
+    gap: 19px;
+    justify-content: right;
+}
+.spanimg {
+    width: 15%;
+    height: 9%;
+}
+.float {
+    width: 4%;
+    float: right;
+}
+.maindiv2 {
+    position: sticky;
+    top: 0;
+}
+.right {
+    right: 45px 
+}
+.colorwhite {
+    color: white;
+}
+
